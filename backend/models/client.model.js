@@ -65,10 +65,36 @@ const clientSchema = new mongoose.Schema({
             },
             required: true
         }
+    },
+    password: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    confirmpassword:{
+        type: String,
+        trim: true
+  
     }
 },
 { timestamps: true }
 )
+
+
+//Before the schema got saved, the password will be encrypted first
+clientSchema.pre('save',async function(next){
+    try {
+        if(this.isModified("password")){
+            this.password = await bcrypt.hash(this.password,10);
+
+            next();
+        }
+
+    } catch (error) {
+
+        next(error)
+    }
+})
 
 const Registration = new mongoose.model('Client',clientSchema);
 
