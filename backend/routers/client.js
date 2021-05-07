@@ -11,7 +11,7 @@ router.route('/').get( async (req,res) =>{
        .then(users => res.json(users))
        .catch(err => res.status(400).json('Error ' + err))
    } catch (error) {
-    res.status(400).send(`Erro is : ${error}`)
+    res.status(400).send(`Error is : ${error}`)
    }
 })
 
