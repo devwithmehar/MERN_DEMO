@@ -2,7 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = require('express').Router();
 const Client = require('../models/client.model');
-const bycrypt = require('bcrypt')
+const bycrypt = require('bcrypt');
+const auth_client = require('../authentication/auth_client');
+
 
 // To get all the users
 router.route('/').get( async (req,res) =>{
@@ -72,9 +74,13 @@ router.route('/login').post(async(req,res) =>{
         
 
         if(isMatch){
+
+            //Adding the middleware to generate token for the particular user
+            const token = await client.generateAuthToken();
+
             Client.findOne({username})
             .then(() =>{
-                res.json('You are loged in !')
+                res.header('token',token).send('You are loged in !');
             })
             .catch(err => res.status(400).json('Error ' + err));
         }
@@ -84,6 +90,26 @@ router.route('/login').post(async(req,res) =>{
 
     }
 
+        
+    } catch (error) {
+        res.status(400).send(`Error is : ${error}`)
+    }
+})
+
+
+// Router to do logout for the client 
+router.route('/logout').post(auth_client, async(req,res) =>{
+    try {
+        
+        
+        req.client.tokens = req.client.tokens.filter( (token) =>{
+           
+             return token.token !== req.token;
+             
+        }) 
+
+        await req.client.save();
+        res.header('token','').send('You are loged out !')
         
     } catch (error) {
         res.status(400).send(`Error is : ${error}`)
