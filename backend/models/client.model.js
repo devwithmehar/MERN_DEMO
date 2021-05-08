@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
@@ -74,8 +75,13 @@ const clientSchema = new mongoose.Schema({
     confirmpassword:{
         type: String,
         trim: true
-  
-    }
+    },
+    tokens:[{
+        token:{
+            type:String,
+            require: true
+        }
+    }]
 },
 { timestamps: true }
 )
@@ -95,6 +101,22 @@ clientSchema.pre('save',async function(next){
         next(error)
     }
 })
+
+
+
+// Method to generate the token
+clientSchema.methods.generateAuthToken = async function(){
+    try {
+        const token = await jwt.sign({_id: this._id.toString()},process.env.SECRET_KEY);
+        this.tokens = this.tokens.concat({token});
+        await this.save();
+        return token;
+
+    } catch (error) {
+
+        return error;
+    }
+}
 
 const Registration = new mongoose.model('Client',clientSchema);
 
