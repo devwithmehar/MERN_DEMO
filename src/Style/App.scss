@@ -1,0 +1,41 @@
+$colors : (
+    nav: #696969,
+    primary: #282c34
+); 
+
+@function color($color-name) {
+    @return map-get($colors, $color-name);
+}
+
+$desktop: 840px;
+
+@mixin desktop{
+    @media (min-width : #{$desktop}) {
+        @content;
+    }
+}
+
+#main{
+    background-color: color(primary);
+    min-height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+
+    @include desktop {
+        min-height: 100vh;
+        width: 100%;
+        align-content: center;
+        align-self: center;
+        align-items: center;
+    }
+
+        #App{
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        }
+
+}

@@ -1,0 +1,65 @@
+#nav {
+  background-color: #696969;
+  width: 100%;
+  min-height: 8vh;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#nav #img {
+  height: 10%;
+  padding: 2px;
+}
+
+#nav #img h1 {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#nav #greeting {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 60%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+#nav #login {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding-left: 80px;
+}
+
+#nav #login #login-link {
+  color: black;
+}
+
+#nav #Register {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding-left: 80px;
+}
+
+#nav #Register #register-link {
+  color: black;
+}
+/*# sourceMappingURL=Navbar.css.map */

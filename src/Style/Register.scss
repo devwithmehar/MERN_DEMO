@@ -1,0 +1,33 @@
+$colors: (
+  primary: #005dff,
+  primary-light: lighten(#005dff,40%),
+  primary-dark: darken(#005dff,40%),
+  accent: #fff6bb,
+);
+$padding: 15px;
+$borders: 15px;
+
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+#overlay_style{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.7);
+    z-index: 1000;
+    
+}
+
+#register{
+    position: fixed;
+    top: 50%;
+    right: 40%;
+    transform: 'translate(-50%,-50%)';
+    background-color: #fff;
+    z-index: 1000;
+}
