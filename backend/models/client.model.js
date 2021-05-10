@@ -13,13 +13,9 @@ const clientSchema = new mongoose.Schema({
         lowercase: true,
         trim: true
     },
-    firstName:{
+    fullName:{
         type:String,
-        required:[true,"First Name is required"],
-        trim: true
-    },
-    lastName:{
-        type:String,
+        required:[true," Name is required"],
         trim: true
     },
     phone:{
