@@ -22,7 +22,7 @@ router.route('/').get( async (req,res) =>{
 router.route('/register').post( async (req,res) =>{
     try{
         //Variable are declared which will be request by user
-        const{username,firstName,lastName,phone,email,
+        const{username, fullName,phone,email,
             address,Street,City,Province,Country,postalCode,
             password,confirmpassword} = req.body;
         
@@ -30,7 +30,7 @@ router.route('/register').post( async (req,res) =>{
         if(password === confirmpassword)
         {
             const newClient = new Client({
-                username,firstName,lastName,phone,email,address,Street,City,Province,Country,postalCode,password
+                username, fullName,phone,email,address,Street,City,Province,Country,postalCode,password
             });
 
             //The final Data will be saved in the Database
