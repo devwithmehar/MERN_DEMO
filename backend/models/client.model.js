@@ -37,7 +37,7 @@ const clientSchema = new mongoose.Schema({
          },
          lowercase:true
     },
-    address:{ 
+    
         Street:{
             tyep:String,
         },
@@ -61,7 +61,7 @@ const clientSchema = new mongoose.Schema({
                 }
             },
             required: true
-        }
+        
     },
     password: {
         type: String,
