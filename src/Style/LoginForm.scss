@@ -1,0 +1,47 @@
+#Login_form{
+    align-items: center;
+    text-align: center;
+
+    h1{
+        color: #228B22;
+        text-transform: uppercase;    
+    }
+
+    label{
+        padding: 10px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    
+    input{
+        padding: 5px;
+        margin-left:50px;
+        margin-right: 50px;
+        margin-bottom: 10px;
+        width: 200px;
+    }
+
+    button{
+        margin-top: 10px;
+        margin-bottom: 15px;
+        background-color: #008CBA;
+        padding: 5px 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px
+    }
+
+     button:hover {
+        background-color: #4CAF50; /* Green */
+        color: white;
+      }
+
+      button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+
+}

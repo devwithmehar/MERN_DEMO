@@ -1,17 +1,31 @@
-import React from 'react'
+import {React } from 'react'
 import {Link} from 'react-router-dom'
-import {AiOutlineClose} from 'react-icons/ai'
+import ClearIcon from '@material-ui/icons/Clear';
 import '../Style/Register.css'
+import RegisterForm from '../Forms/RegisterForm'
+import Modal from 'react-modal'
 
+
+Modal.setAppElement('#root')
 const Registeration = () => {
+    
     return (
         <>
-        <div  id="overlay_style" />
-        <div id="register">
-        <Link to='/'> BACK {AiOutlineClose}</Link>
-
-            <h1>This is Registration Page</h1>
+        {/* Introductiing Modal  */}
+        <Modal isOpen={true}  >
+        <div>
+        <Link to='/'> <ClearIcon /></Link>
         </div>
+        
+        
+         {/* div for the form */}
+         <div id="register">
+       
+          {/* The Registration form is used here */}
+         <RegisterForm />
+        </div>
+
+        </Modal>
         </>
     )
 }
