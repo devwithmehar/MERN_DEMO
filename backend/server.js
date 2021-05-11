@@ -10,6 +10,7 @@ const port = process.env.PORT || 5000;
 //Creating a server
 const app = express();
 
+app.use(cors());
 //It will let the application know that we are using json format
 app.use(express.json());
 
