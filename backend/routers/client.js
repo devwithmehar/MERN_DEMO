@@ -35,8 +35,8 @@ router.route('/register').post( async (req,res) =>{
 
             //The final Data will be saved in the Database
             newClient.save()
-            .then( () =>{
-                res.json('Client Added !')
+            .then( (client) =>{
+                res.json(client)
             })
             .catch(error => {res.status(400).send(`Error occur: ${error}`)});
 
@@ -79,8 +79,8 @@ router.route('/login').post(async(req,res) =>{
             const token = await client.generateAuthToken();
 
             Client.findOne({username})
-            .then(() =>{
-                res.header('token',token).send('You are loged in !');
+            .then((user) =>{
+                res.header('token',token).send(user);
             })
             .catch(err => res.status(400).json('Error ' + err));
         }
@@ -93,6 +93,20 @@ router.route('/login').post(async(req,res) =>{
         
     } catch (error) {
         res.status(400).send(`Error is : ${error}`)
+    }
+})
+
+
+//Router to get the information of client who has loged in 
+router.route('/login/client').get(auth_client , async(req,res) =>{
+    try {
+
+        Client.find({_id :req.client._id})
+       .then(users => res.json(users))
+       .catch(err => res.status(400).json('Error ' + err))
+        
+    } catch (error) {
+        res.status(400).send(`Error is ${error}`)
     }
 })
 
