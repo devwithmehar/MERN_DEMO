@@ -6,6 +6,7 @@ import LoginForm from '../Forms/LoginForm'
 
 
 const Login = () => {
+  
     return(
         <>
         <div  id="overlay_style" />
@@ -15,7 +16,7 @@ const Login = () => {
             <Link to='/'> <ClearIcon /> </Link>
             </div>
             {/* The login form is Used here */}
-            <LoginForm />
+            <LoginForm  />
            
           
         </div>
