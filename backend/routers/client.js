@@ -102,7 +102,7 @@ router.route('/login/client').get(auth_client , async(req,res) =>{
     try {
 
         Client.find({_id :req.client._id})
-       .then(users => res.json(users))
+       .then(users => res.json(req.client))
        .catch(err => res.status(400).json('Error ' + err))
         
     } catch (error) {
