@@ -4,56 +4,42 @@ import Registeration from './components/Registeration'
 import './Style/App.css'
 import Home from './components/Home'
 import {BrowserRouter as Router, Switch , Route} from 'react-router-dom'
-import {React , useEffect , useState} from 'react';
-
-
+import {React } from 'react';
+import {UserInfo} from './Context/userContext';
+import UserInformation from './components/UserInformation';
+import Logout from './components/Logout'
 
 
 function App() {
   
-
-  const [login, setLogin] = useState(false)
-  const [fullName, setFullName] = useState('')
-  const [username, setUsername] = useState('')
- 
-  useEffect(() => {   
-    console.log('I am practicing UseEffect')
-    
-    if(  localStorage.getItem('token'))
-    {
-      
-       setLogin(prev => !prev);
-       setFullName(localStorage.getItem('FullName'));
-       setUsername(localStorage.getItem('Username'));
-       
-    }
-    
- }, []);
-
-
-
   return (
+    <UserInfo>
     <div id="main">
 
       <Router>
+        
           <div id="App">
-           
+          <Navbar   />
       
             <Switch>
             <Route exact path='/'  >
-              <Navbar  name={fullName} isLogin={login} username={username} />
+              
               <Home />
             </Route>
             
             <Route path='/login' component={Login} />
            
+            <Route path='/logout' component={Logout} />
             
             <Route path='/register' component={Registeration} />
+
+            <Route path='/userInfo' component={UserInformation} />
             
             </Switch>
          </div>
         </Router>
     </div>
+    </UserInfo>
   );
 }
 
