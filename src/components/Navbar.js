@@ -1,12 +1,38 @@
-import React from 'react';
+import React ,{useState , useEffect , useContext} from 'react';
 import '../Style/Navbar.css';
 // import logo from  '../carLogo.jpg'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {userContext} from '../Context/userContext'
 
 
-const Navbar = (props) => {
+const Navbar = () => {
 
-    console.log(props.isLogin)
+    const [login, setLogin] = useContext(userContext)
+    const [fullName, setFullName] = useState('')
+    const [username, setUsername] = useContext(userContext)
+   
+  
+  // Make a function to get item from local storage
+  const getFromLocalStorage =() =>{
+    if(  localStorage.getItem('token'))
+    {
+      
+       setLogin(prev => !prev);
+       setFullName(localStorage.getItem('FullName'));
+       setUsername(localStorage.getItem('Username'));
+       
+    }
+  }
+
+
+  useEffect(() => {   
+    console.log('I am practicing UseEffect')
+    getFromLocalStorage();
+  }, []);
+
+
+
+    console.log(login)
     return (
         <div id='nav'>
            <div id="img">
@@ -15,23 +41,23 @@ const Navbar = (props) => {
            </div>
 
            <div id="greeting">
-               Welcome {props.isLogin ? props.name : '' }
+               Welcome {login ? fullName : '' }
                
            </div>
             
             <div id="login">
-                {!props.isLogin?
+                {!login?
                 <Link id="login-link" to='/login'>
                   LogIn
                 </Link> :
-                <Link id="login-link" to='' >Logout</Link>
+                <Link id="login-link" to='/logout' >Logout</Link>
                 }
             </div>
 
             <div id="Register">
             
-            {props.isLogin? <Link id="register-link" to=''>
-                   {props.username}
+            {login? <Link id="register-link" to='/userInfo'>
+                   {username}
              </Link>   
             
             : 
