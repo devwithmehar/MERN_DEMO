@@ -1,7 +1,9 @@
-import {React, useState} from 'react'
+import {React, useState } from 'react'
 import '../Style/LoginForm.css'
 import axios from 'axios'
 import {useHistory} from 'react-router-dom'
+import authAxios from '../Axios/Axios'
+
 
 const Login_Form = () => {
  const history = useHistory(); // allows to programatically change the URL
@@ -25,7 +27,7 @@ const Login_Form = () => {
  const handleSubmit = (e) =>{
     e.preventDefault();
 
-    axios.post(`http://localhost:5000/client/login`,userLogin)
+    authAxios.post(`client/login`,userLogin)
     .then( res => {
         console.log('User Loged IN!');
         
@@ -38,8 +40,8 @@ const Login_Form = () => {
          localStorage.setItem('Username', res.data.username);
          
          
-        history.push('/')
-        
+         history.push('/')
+        window.location.reload();
     })
     .catch(error =>{
         localStorage.setItem('loginType', 'false');
